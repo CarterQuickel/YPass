@@ -1,19 +1,32 @@
 :root {
   color-scheme: light;
-  --bg: #f4f1ea;
+  --bg: #eceeea;
   --ink: #1c1917;
-  --accent: #0f766e;
+  --accent: #37523d;
+  --faint-txt: rgb(98, 102, 95);
   --danger: #b91c1c;
   --card: #fff;
+  --card-border: rgb(182, 189, 182);
 }
 * {
   box-sizing: border-box;
 }
 body {
   margin: 0;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: var(--bg);
   color: var(--ink);
+}
+.header-link {
+  text-decoration: none;
+  color: var(--faint-txt);
+  font-weight: 500;
+}
+.header-link:hover {
+  color: var(--accent);
+}
+.header-link.to-be-removed {
+  display: none;
 }
 .site-header,
 .site-footer {
@@ -25,16 +38,62 @@ body {
 }
 .site-header nav {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   align-items: center;
 }
 .page {
-  margin: 2rem auto;
+  margin: 4rem auto;
   padding: 0 1rem;
+}
+.account-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.account-info-box {
+  background-color: var(--card);
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+}
+.link-account-btn {
+  text-decoration: none;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+h1, h2, h3, h4, h5 {
+  font-weight: 500;
+}
+h4 {
+  color: var(--faint-txt);
+  margin-top: 0;
+}
+.h-line {
+  width: 40px;
+  height: 3px;
+  background-color: var(--accent);
+  border-radius: 2px;
 }
 label {
   display: block;
   margin: 0.75rem 0;
+}
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+}
+li {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
 }
 input,
 button {
@@ -46,9 +105,24 @@ button,
   background: var(--accent);
   color: #fff;
   border: 0;
+  border-radius: 8px;
+  padding: 8px 10px;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+button:hover, .button:hover {
+  animation: button-hover 0.2s forwards ease;
+  background-color: oklch(from var(--accent) calc(l - 0.15) c h);
+}
+@keyframes button-hover {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-1px);
+  }
 }
 .flash {
   padding: 0.75rem;

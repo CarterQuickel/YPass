@@ -6,24 +6,33 @@
   <script nonce="<%= cspNonce %>" src="/js/teacher-sort.js?v=4" defer></script>
   <div class="staff-heading">
     <div>
-      <p class="kiosk-kicker">Staff workspace</p>
-      <h1>Lehrerseite</h1>
-      <p class="muted">Review passes that start at your assigned locations.</p>
+      <h4>
+        🗒 <%= new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) %>
+      </h4>
+      <div class="h-line"></div>
+      <h1>Hello, <%= currentUser.display_name.split(',')[1]?.trim() %></h1>
+      <li>
+        <p class="account-info-box">✉ <%= currentUser.primary_email || 'no email' %></p>
+        <form class="inline" method="post" action="/auth/logout">
+          <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>" />
+          <button type="submit">Sign out</button>
+        </form>
+      </li>
     </div>
-    <a class="button" href="/teacher/appointment">Create appointment</a>
+    <a class="button" href="/teacher/appointment">+ Create appointment</a>
   </div>
 
   <% if (message) { %>
     <p class="flash flash-success teacher-action-message" role="status" aria-live="polite"><%= message %></p>
   <% } %>
   <section class="staff-section">
-    <h2>Your locations</h2>
+    <h2>Locations</h2>
     <% if (!locations.length) { %>
       <p class="muted">No active locations are assigned to your account.</p>
     <% } else { %>
       <ul>
         <% locations.forEach((location) => { %>
-          <li><%= location.name %></li>
+          <li class="account-info-box">➤ <%= location.name %></li>
         <% }) %>
       </ul>
     <% } %>
