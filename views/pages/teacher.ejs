@@ -66,7 +66,7 @@
                 <% if (pass.status === 'pending_approval') { %>
                   <form method="post" action="/teacher/pass"><input type="hidden" name="_csrf" value="<%= csrfToken %>"><input type="hidden" name="passId" value="<%= pass.id %>"><input type="hidden" name="action" value="approve"><button type="submit">Approve</button></form>
                 <% } %>
-                <form method="post" action="/teacher/pass"><input type="hidden" name="_csrf" value="<%= csrfToken %>"><input type="hidden" name="passId" value="<%= pass.id %>"><input type="hidden" name="action" value="cancel"><button type="submit" class="danger-button">Cancel</button></form>
+                <form method="post" action="/teacher/pass"><input type="hidden" name="_csrf" value="<%= csrfToken %>"><input type="hidden" name="passId" value="<%= pass.id %>"><input type="hidden" name="action" value="cancel"><button type="submit" class="danger-button">Decline</button></form>
               </div>
             <% } %>
           </article>
