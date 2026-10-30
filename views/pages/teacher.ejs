@@ -44,7 +44,6 @@
       <p class="muted">No passes are currently starting at your locations.</p>
     <% } else { %>
       <div class="staff-sort">
-        <label for="pass-sort">Sort passes</label>
         <select id="pass-sort" data-sort-control="passes">
           <option value="default">Order shown</option>
           <option value="status">Status</option>
@@ -55,18 +54,33 @@
       </div>
       <div class="staff-list" data-sort-list="passes">
         <% passes.forEach((pass) => { %>
-          <article class="staff-row" data-sort-status="<%= pass.status %>" data-sort-student="<%= pass.student_name %>" data-sort-date="<%= pass.requested_at %>">
+          <article class="staff-row <%= pass.status %>" data-sort-status="<%= pass.status %>" data-sort-student="<%= pass.student_name %>" data-sort-date="<%= pass.requested_at %>">
             <div>
-              <strong><%= pass.student_name %></strong>
-              <span class="muted">ID <%= pass.student_number %></span>
-              <p><%= pass.origin_name %> to <%= pass.destination_name %> · <%= pass.status %></p>
+              <div class="passes-header-wrap">
+                <strong><%= pass.student_name %></strong>
+                <h4 class="muted"><%= pass.student_number %></h4>
+              </div>
+              <div class="passes-footer-wrap">
+                <%= pass.origin_name %> → <%= pass.destination_name %> 
+              </div>
             </div>
             <% if (!['completed', 'cancelled', 'expired'].includes(pass.status)) { %>
               <div class="staff-actions">
                 <% if (pass.status === 'pending_approval') { %>
-                  <form method="post" action="/teacher/pass"><input type="hidden" name="_csrf" value="<%= csrfToken %>"><input type="hidden" name="passId" value="<%= pass.id %>"><input type="hidden" name="action" value="approve"><button type="submit">Approve</button></form>
+                  <form method="post" action="/teacher/pass">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input type="hidden" name="passId" value="<%= pass.id %>">
+                    <input type="hidden" name="action" value="approve">
+                    <button type="submit">Approve</button>
+                  </form>
                 <% } %>
-                <form method="post" action="/teacher/pass"><input type="hidden" name="_csrf" value="<%= csrfToken %>"><input type="hidden" name="passId" value="<%= pass.id %>"><input type="hidden" name="action" value="cancel"><button type="submit" class="danger-button">Decline</button></form>
+                <form method="post" action="/teacher/pass"><input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                  <input type="hidden" name="passId" value="<%= pass.id %>">
+                  <input type="hidden" name="action" value="cancel">
+                  <button type="submit" class="danger-button">
+                    <%= pass.status === "pending_approval" ? "Decline" : "Cancel" %>
+                  </button>
+                </form>
               </div>
             <% } %>
           </article>
@@ -76,12 +90,11 @@
   </section>
 
   <section class="staff-section">
-    <h2>Your appointments</h2>
+    <h2>Appointments</h2>
     <% if (!appointments.length) { %>
       <p class="muted">No appointments.</p>
     <% } else { %>
       <div class="staff-sort">
-        <label for="appointment-sort">Sort appointments</label>
         <select id="appointment-sort" data-sort-control="appointments">
           <option value="default">Order shown</option>
           <option value="status">Status (A-Z)</option>
@@ -93,7 +106,7 @@
       <div class="staff-list" data-sort-list="appointments">
         <% appointments.forEach((appointment) => { %>
           <article class="staff-row" data-sort-status="<%= appointment.status %>" data-sort-student="<%= appointment.student_name %>" data-sort-date="<%= appointment.scheduled_at %>">
-            <div><strong><%= appointment.student_name %></strong><span class="muted"> ID <%= appointment.student_number %></span><p><%= appointment.origin_name %> to <%= appointment.destination_name %> · <%= appointment.scheduled_at %></p></div>
+            <div><strong><%= appointment.student_name %></strong><span class="muted"> ID <%= appointment.student_number %></span><p><%= appointment.origin_name %> → <%= appointment.destination_name %> · <%= appointment.scheduled_at %></p></div>
             <span class="status-label"><%= appointment.status %></span>
           </article>
         <% }) %>

@@ -65,6 +65,21 @@ body {
   border-radius: 8px;
   padding: 8px 10px;
 }
+.passes-header-wrap {
+  display: flex; 
+  flex-direction: row; 
+  gap: 5px;
+  margin: 0;
+}
+.passes-footer-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+.muted {
+  margin-bottom: 0;
+}
 h1, h2, h3, h4, h5 {
   font-weight: 500;
 }
@@ -112,7 +127,7 @@ button,
   cursor: pointer;
   transition: all 0.2s ease;
 }
-button:hover, .button:hover {
+button:not(.danger-button):hover, .button:hover {
   animation: button-hover 0.2s forwards ease;
   background-color: oklch(from var(--accent) calc(l - 0.15) c h);
 }
@@ -448,8 +463,29 @@ button:hover, .button:hover {
   gap: 1rem;
   align-items: center;
   padding: 1rem;
-  background: var(--card);
-  border: 1px solid #d6d3d1;
+  background-color: var(--card);
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+}
+.staff-row.pending_approval {
+  border-left: 5px solid rgb(214, 168, 18) !important;
+}
+.staff-row.active {
+  animation: blink 1s infinite ease-in-out;
+}
+@keyframes blink {
+  0%, 100% {
+    border-left: 5px solid rgb(26, 110, 206);
+  }
+  50% {
+    border-left: 5px solid rgba(66, 66, 66, 0.205);
+  }
+}
+.staff-row.completed {
+  border-left: 5px solid var(--accent) !important;
+}
+.staff-row.cancelled {
+  border-left: 5px solid var(--danger) !important;
 }
 .staff-row p {
   margin: 0.35rem 0 0;
@@ -508,24 +544,6 @@ button:hover, .button:hover {
   display: grid;
   gap: 0.6rem;
 }
-.staff-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: center;
-  padding: 1rem;
-  background: var(--card);
-  border: 1px solid #d6d3d1;
-}
-.staff-row p {
-  margin: 0.35rem 0 0;
-  color: #57534e;
-}
-.staff-row time,
-.status-label {
-  color: #57534e;
-  font-size: 0.9rem;
-}
 .staff-actions {
   display: flex;
   gap: 0.5rem;
@@ -536,6 +554,10 @@ button:hover, .button:hover {
 }
 .danger-button {
   background: var(--danger);
+}
+.danger-button:hover {
+  animation: button-hover 0.2s forwards ease;
+  background-color: oklch(from var(--danger) calc(l - 0.15) c h);
 }
 .staff-form {
   display: grid;
