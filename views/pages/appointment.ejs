@@ -2,7 +2,7 @@
   <a class="button" href="/teacher">← Back to dashboard</a>
   <h1>Create appointment</h1>
   <div class="h-line"></div>
-  <p class="small-muted">The student must still scan at a kiosk. An appointment does not create a pass by itself.</p>
+  <p class="small-muted">The student must still scan at a kiosk. An appointment does not create a pass by itself. Appointments use APPOINTMENT as the origin and require a destination assigned to you.</p>
   <% if (message) { %><p class="flash <%= message === 'Appointment created.' ? 'flash-success' : 'flash-error' %>"><%= message %></p><% } %>
   <form method="post" action="/teacher/appointment" class="staff-form">
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
@@ -15,15 +15,8 @@
     </label>
     <p class="flash flash-error" role="alert" hidden data-appointment-student-warning>Student ID does not exist.</p>
     <label>
-      Coming from<span class="required-note"> *</span>
-      <select name="originLocationId" required>
-        <option value="">Select location</option>
-        <% locations.forEach((location) => { %>
-          <option data-language-ignore value="<%= location.id %>" 
-            <%= form.originLocationId === location.id ? 'selected' : '' %>><%= location.name %>
-          </option>
-        <% }) %>
-      </select>
+      Coming from
+      <output class="account-info-box" data-language-ignore>APPOINTMENT</output>
     </label>
     <label>
       Going to<span class="required-note"> *</span>
