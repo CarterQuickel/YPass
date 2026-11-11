@@ -12,7 +12,7 @@
   --active: rgb(29, 90, 160);
   --completed: rgb(23, 87, 29);
   --card: #fff;
-  --pass-border: 8px;
+  --pass-border: 5px;
   --card-border: rgb(182, 189, 182);
   --site-footer-clearance: 4rem;
 }
@@ -27,6 +27,9 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: var(--bg);
   color: var(--ink);
+}
+body * {
+  border-radius: 100% !important
 }
 .header-link {
   text-decoration: none;
@@ -147,7 +150,7 @@ body {
 .account-info-box {
   background-color: var(--card);
   padding: 8px 10px;
-  border-radius: 10px;
+  border-radius: var(--pass-border);
   border: 1px solid var(--card-border);
 }
 .link-account-btn {
@@ -155,7 +158,7 @@ body {
   background-color: var(--accent);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--pass-border);
   padding: 8px 10px;
 }
 .auth-card,
@@ -163,7 +166,7 @@ body {
   width: min(100%, 34rem);
   padding: clamp(1.5rem, 5vw, 2.5rem);
   border: 1px solid var(--card-border);
-  border-radius: 16px;
+  border-radius: var(--pass-border);
   background: var(--card);
   box-shadow: 0 16px 40px rgb(28 25 23 / 8%);
 }
@@ -189,7 +192,7 @@ body {
   width: 100%;
   min-height: 2.75rem;
   border: 1px solid var(--card-border);
-  border-radius: 8px;
+  border-radius: var(--pass-border);
   background: #fff;
 }
 .auth-form button,
@@ -245,7 +248,7 @@ body {
   padding: clamp(1.5rem, 5vw, 2.5rem);
   border: 1px solid var(--card-border);
   border-top: 5px solid var(--danger);
-  border-radius: 16px;
+  border-radius: var(--pass-border);
   background: var(--card);
   box-shadow: 0 16px 40px rgb(28 25 23 / 8%);
   text-align: center;
@@ -339,13 +342,14 @@ input,
 button {
   font: inherit;
   padding: 0.4rem 0.6rem;
+  border-radius: var(--pass-border);
 }
 button,
 .button {
   background: var(--accent);
   color: #fff;
   border: 0;
-  border-radius: 8px;
+  border-radius: var(--pass-border);
   padding: 8px 10px;
   text-decoration: none;
   display: flex;
@@ -519,6 +523,7 @@ button:not(.danger-button):hover,
   min-height: 2.8rem;
   border: 1px solid #a8a29e;
   background: #fffcf7;
+  border-radius: var(--pass-border);
 }
 .kiosk-form input[type='search'] {
   padding-inline: 0.75rem;
@@ -582,6 +587,7 @@ button:not(.danger-button):hover,
   min-width: 0;
   border: 0;
   outline: 0;
+  border-radius: var(--pass-border);
 }
 .scan-icon {
   padding-left: 0.8rem;
@@ -734,6 +740,7 @@ button:not(.danger-button):hover,
 }
 .manager-tabs {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin: 0 0 1.5rem;
@@ -769,6 +776,12 @@ button:not(.danger-button):hover,
 }
 .manager-tab img {
   margin-bottom: -2px;
+}
+.manager-tab-divider {
+  display: flex;
+  width: 1px;
+  border: 1px solid #d6d3d1;
+  height: 20px
 }
 .manager-tab.is-active img {
   filter: invert(1);
@@ -832,15 +845,16 @@ button:not(.danger-button):hover,
   justify-content: space-between;
   gap: 1rem;
   align-items: center;
-  padding: 1rem;
+  padding: 4000rem;
   background-color: var(--card);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: var(--pass-border);
+  border-top-right-radius: var(--pass-border);
   border: 1px solid var(--card-border);
-  margin-bottom: 0;
+  margin-bottom: 400rem;
 }
 .student-search input {
   margin-top: 0.35rem;
+  border-radius: var(--pass-border);
 }
 #manager-panel-locations select[name='bathroom']:has(option:checked[value='']),
 #manager-panel-locations select[name='teacherUserId']:has(option:checked[value='']),
@@ -950,8 +964,8 @@ button:not(.danger-button):hover,
   gap: 10px;
   background-color: oklch(from var(--bg) calc(l - 0.05) c h);
   padding: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: var(--pass-border);
+  border-bottom-right-radius: var(--pass-border);
   border: 1px solid var(--card-border);
   border-top: none;
 }
@@ -962,7 +976,7 @@ button:not(.danger-button):hover,
   align-items: center;
   padding: 1rem;
   background-color: var(--card);
-  border-radius: 10px;
+  border-radius: var(--pass-border);
   border: 1px solid var(--card-border);
 }
 .staff-row.pass-row {
@@ -1118,7 +1132,7 @@ button:not(.danger-button):hover,
   margin-top: 10px;
   background-color: var(--card);
   padding: 15px 20px;
-  border-radius: 10px;
+  border-radius: var(--pass-border);
   border: 1px solid var(--card-border);
 }
 input,
@@ -1127,6 +1141,8 @@ textarea {
   width: 100%;
   font: inherit;
   padding: 0.55rem;
+  border-radius: var(--pass-border);
+  border: 1px solid var(--card-border);
 }
 .filter-bar {
   display: flex;
@@ -1146,6 +1162,7 @@ textarea {
   min-height: 2.4rem;
   font: inherit;
   padding: 0.4rem;
+  border-radius: var(--pass-border);
 }
 
 /* Responsive staff dashboard and card layouts. */
@@ -1197,6 +1214,9 @@ textarea {
     flex: 1;
     margin: 4rem auto;
     padding: 0 1rem var(--site-footer-clearance);
+  }
+  .manager-tab-divider {
+    display: none;
   }
 }
 
