@@ -354,13 +354,7 @@ export async function createKioskServer(options = {}) {
         }
         sendJson(
           res,
-          {
-            ok: false,
-            status: 'offline',
-            message: error.message,
-            enrollmentCode: config.enrollmentCode || null,
-            enrollmentExpiresAt: state.enrollmentExpiresAt,
-          },
+          { ok: false, status: 'offline', message: error.message },
           error.status || 502,
         );
       }
