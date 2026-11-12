@@ -497,6 +497,14 @@ export function createPassService({
     return student ? { studentNumber: student.student_number, studentName: student.display_name } : null;
   }
 
+  async function findAppointmentStudents(studentName) {
+    const students = await passesRepository.findStudentsByName(studentName);
+    return students.map((student) => ({
+      studentNumber: student.student_number,
+      studentName: student.display_name,
+    }));
+  }
+
   async function createAppointment({
     userId,
     studentNumber,
@@ -774,6 +782,7 @@ export function createPassService({
     cancelPass,
     appointmentOptions,
     findAppointmentStudent,
+    findAppointmentStudents,
     createAppointment,
     managerDashboard,
     createManagerStudent,
