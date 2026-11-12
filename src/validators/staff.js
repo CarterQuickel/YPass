@@ -20,7 +20,10 @@ export const appointmentSchema = z.object({
 });
 
 export const appointmentStudentLookupSchema = z.object({
-  studentNumber,
+  studentNumber: studentNumber.optional(),
+  studentName: studentName.optional(),
+}).refine(({ studentNumber, studentName }) => studentNumber || studentName, {
+  message: 'Enter a student name or ID',
 });
 
 export const managerFilterSchema = z.object({
