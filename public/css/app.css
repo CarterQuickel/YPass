@@ -1113,15 +1113,18 @@ button:not(.danger-button):hover,
   margin: 0.35rem 0 0;
   color: #57534e;
 }
-.staff-row time,
+.staff-row .time,
 .status-label {
   color: #57534e;
   font-size: 0.9rem;
+  display: flex;
+  flex-direction: row-reverse;
 }
 .staff-actions {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 .staff-actions form {
   margin: 0;
