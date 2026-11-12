@@ -842,7 +842,7 @@ button:not(.danger-button):hover,
   justify-content: space-between;
   gap: 1rem;
   align-items: center;
-  padding: 1.5rem;
+  padding: 1rem;
   background-color: var(--card);
   border-top-left-radius: var(--pass-border);
   border-top-right-radius: var(--pass-border);
@@ -1018,6 +1018,10 @@ button:not(.danger-button):hover,
 .create-appointment {
   width: 100%;
 }
+.autofilled-box {
+  pointer-events: none;
+  background-color: #f0f0f0;
+}
 
 /* Pass state accents and animations. */
 .staff-row.pending_approval {
@@ -1057,6 +1061,12 @@ button:not(.danger-button):hover,
   border-left: var(--pass-border) solid var(--expired) !important;
 }
 .staff-row.timedout {
+  border-left: var(--pass-border) solid var(--expired) !important;
+}
+.staff-row.scheduled {
+  border-left: var(--pass-border) solid var(--pending) !important;
+}
+.staff-row.no_show {
   border-left: var(--pass-border) solid var(--expired) !important;
 }
 
@@ -1167,6 +1177,9 @@ textarea {
   .staff-heading,
   .staff-row {
     display: block;
+  }
+  .staff-row p {
+    font-size: 13px;
   }
   .teacher-data {
     flex-direction: column;

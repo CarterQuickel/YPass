@@ -2,7 +2,8 @@
   <a class="button" href="/teacher">← Back to dashboard</a>
   <h1>Create appointment</h1>
   <div class="h-line"></div>
-  <p class="small-muted">The student must still scan at a kiosk. An appointment does not create a pass by itself. Appointments use APPOINTMENT as the origin and require a destination assigned to you.</p>
+  <p class="small-muted">ⓘ The student must still scan at a kiosk. An appointment does not create a pass by itself.</p>
+  <p class="small-muted">ⓘ Locations must have a teacher assigned to them to be viable appointment destinations.</p>
   <% if (message) { %><p class="flash <%= message === 'Appointment created.' ? 'flash-success' : 'flash-error' %>"><%= message %></p><% } %>
   <form method="post" action="/teacher/appointment" class="staff-form">
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
@@ -11,12 +12,11 @@
       <input name="studentNumber" value="<%= form.studentNumber || '' %>" required data-appointment-student-id>
     </label>
     <label>
-      <input name="studentName" value="<%= form.studentName || '' %>" required readonly data-appointment-student-name>
+      <input class="autofilled-box" name="studentName" value="<%= form.studentName || '' %>" required readonly data-appointment-student-name>
     </label>
     <p class="flash flash-error" role="alert" hidden data-appointment-student-warning>Student ID does not exist.</p>
     <label>
-      Coming from
-      <output class="account-info-box" data-language-ignore>APPOINTMENT</output>
+      <output class="account-info-box" hidden data-language-ignore>APPOINTMENT</output>
     </label>
     <label>
       Going to<span class="required-note"> *</span>
