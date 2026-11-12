@@ -28,9 +28,6 @@ body {
   background: var(--bg);
   color: var(--ink);
 }
-body * {
-  border-radius: 100% !important
-}
 .header-link {
   text-decoration: none;
   color: var(--faint-txt);
@@ -845,12 +842,12 @@ button:not(.danger-button):hover,
   justify-content: space-between;
   gap: 1rem;
   align-items: center;
-  padding: 4000rem;
+  padding: 1.5rem;
   background-color: var(--card);
   border-top-left-radius: var(--pass-border);
   border-top-right-radius: var(--pass-border);
   border: 1px solid var(--card-border);
-  margin-bottom: 400rem;
+  margin-bottom: 0px;
 }
 .student-search input {
   margin-top: 0.35rem;
