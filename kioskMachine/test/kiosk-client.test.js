@@ -128,8 +128,11 @@ test('local kiosk server retries central requests after an outage', async (t) =>
   const port = instance.server.address().port;
 
   const pageResponse = await fetch(`http://127.0.0.1:${port}/kiosk/pass`);
-  assert.equal(pageResponse.status, 503);
-  assert.match(await pageResponse.text(), /api\/central-status/);
+  assert.equal(pageResponse.status, 200);
+  const page = await pageResponse.text();
+  assert.match(page, /Connecting to YPass/);
+  assert.match(page, /fetch\('\/api\/central-status'/);
+  assert.match(page, /window\.location\.replace\(requestedUrl\)/);
 
   const statusResponse = await fetch(`http://127.0.0.1:${port}/api/central-status`);
   assert.equal(statusResponse.status, 503);
